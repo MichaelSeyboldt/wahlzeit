@@ -131,6 +131,7 @@ public class Photo extends DataObject {
 	@Parent
 	Key parent = ObjectManager.applicationRootKey;
 
+	protected Location location;
 	/**
 	 *
 	 */
@@ -182,6 +183,16 @@ public class Photo extends DataObject {
 	public String getOwnerId() {
 		return ownerId;
 	}
+
+	/**
+	 * @methodtype get
+	 */
+	public Location getLocation(){ return location;}
+
+	/**
+	 * @methodtype set
+	 */
+	public void setLocation(Location l){ location = l;}
 
 	/**
 	 * @methodtype set
