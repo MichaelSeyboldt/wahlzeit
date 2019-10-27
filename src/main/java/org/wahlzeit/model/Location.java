@@ -23,6 +23,7 @@ public class Location {
         if(coordinate==null) throw new NullPointerException("This Location has no position");
         if(target==null || target.coordinate==null) throw new IllegalArgumentException("Target location null or target positon not set");
         return coordinate.getDistance(target.coordinate);
+
     }
 
     private boolean isEqual(Location target){
