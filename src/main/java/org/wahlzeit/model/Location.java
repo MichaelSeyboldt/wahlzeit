@@ -1,17 +1,14 @@
 package org.wahlzeit.model;
 
-public class Location {
-    private Coordinate coordinate;
+import java.util.Objects;
 
-    public Location(){
-        coordinate=null;
+public class Location {
+    protected Coordinate coordinate;
+
+    public Location(Coordinate position){
+        coordinate = position;
     }
-    public Location(double x, double y, double z){
-        coordinate = new Coordinate(x,y,z);
-    }
-    public void setPositon(double x,double y, double z){
-        coordinate =  new Coordinate(x,y,z);
-    }
+
 
     /***
      *
@@ -20,8 +17,6 @@ public class Location {
      */
 
     public double getDistance(Location target) {
-        if(coordinate==null) throw new NullPointerException("This Location has no position");
-        if(target==null || target.coordinate==null) throw new IllegalArgumentException("Target location null or target positon not set");
         return coordinate.getDistance(target.coordinate);
 
     }
@@ -39,5 +34,9 @@ public class Location {
     @Override
     public boolean equals(Object target){
         return this==target || target.getClass() == this.getClass() && isEqual((Location) target);
+    }
+    @Override
+    public int hashCode(){
+        return Objects.hashCode(coordinate);
     }
 }

@@ -1,6 +1,5 @@
 package org.wahlzeit.model;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,20 +7,21 @@ import static org.junit.Assert.*;
 
 
 public class LocationTest {
-    private Location zero, tenx, teny, tenz;
+    private Coordinate zero, tenx, teny, tenz;
 
     @Before
     public void setup(){
-        zero = new Location(0,0,0);
-        tenx = new Location(10,0,0);
-        teny = new Location(0,10,0);
-        tenz = new Location(0,0,10);
+        zero = new Coordinate(0 ,0,0);
+        tenx = new Coordinate( 10,0,0);
+        teny = new Coordinate( 0,10,0);
+        tenz = new Coordinate( 0 ,0,10);
+
 
     }
 
 
     @Test
-    public void distances(){
+    public void testdistances(){
         assertEquals(zero.getDistance(zero),0., 1e-15);
         assertEquals(zero.getDistance(tenx),10.,1e-15);
         assertEquals(zero.getDistance(teny),10.,1e-15);
@@ -30,16 +30,18 @@ public class LocationTest {
     }
 
     @Test
-    public void equality(){
-        Location tx = new Location(10, 0, 0);
-        Location undefined1 = new Location();
-        Location undefined2 = new Location();
+    public void testequality(){
+        Coordinate tx = new Coordinate(10, 0, 0);
         assertTrue(zero.equals(zero));
         assertFalse(zero.equals(tenx));
         assertTrue(tenx.equals(tx));
         assertFalse(tenx.equals(teny));
-        assertTrue(undefined1.equals(undefined1));
-        assertFalse(undefined1.equals(zero));
-        assertFalse(undefined1.equals(undefined2));
+        Location lx = new Location(tenx);
+        Location lx2 = new Location(tx);
+        Location ly = new Location(teny);
+        assertTrue(lx.equals(lx2));
+        assertFalse(lx.equals(ly));
+        assertFalse(lx.equals(tenx));
+
     }
 }
