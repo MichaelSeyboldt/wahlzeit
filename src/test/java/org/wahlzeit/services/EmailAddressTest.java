@@ -21,6 +21,7 @@
 package org.wahlzeit.services;
 
 import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * Test cases for the EmailAddress class.
@@ -37,6 +38,7 @@ public class EmailAddressTest extends TestCase {
 	/**
 	 *
 	 */
+	@Test
 	public void testGetEmailAddressFromString() {
 		// invalid email addresses are allowed for local testing and online avoided by Google
 
@@ -44,6 +46,24 @@ public class EmailAddressTest extends TestCase {
 		assertTrue(createEmailAddressIgnoreException("bingo@bongo.com"));
 		assertTrue(createEmailAddressIgnoreException("bingo.bongo@bongo.com"));
 		assertTrue(createEmailAddressIgnoreException("bingo+bongo@bango"));
+	}
+
+	@Test
+	public void testEmailAddresEquals(){
+		EmailAddress eq1,eq2,neq;
+		try{
+			eq1 = EmailAddress.getFromString("bingo@bongo.com");
+			eq2 = EmailAddress.getFromString("bingo@bongo.com");
+			neq = EmailAddress.getFromString("bingo.bongo@bongo.com");
+		} catch (IllegalArgumentException ex){
+			fail();
+			return;
+		}
+		assertTrue(eq1.isEqual(eq2));
+		assertTrue(eq2.isEqual(eq1));
+		assertTrue(eq1.isEqual(eq1));
+		assertFalse(eq1.isEqual(neq));
+
 	}
 
 	/**
@@ -62,6 +82,7 @@ public class EmailAddressTest extends TestCase {
 	/**
 	 *
 	 */
+	@Test
 	public void testEmptyEmailAddress() {
 		assertFalse(EmailAddress.EMPTY.isValid());
 	}
