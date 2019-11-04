@@ -24,6 +24,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.wahlzeit.services.EmailAddress;
 
+import java.util.concurrent.ExecutionException;
+
 import static org.junit.Assert.*;
 
 public class EmailServiceTest {
@@ -74,6 +76,25 @@ public class EmailServiceTest {
 		try {
 			assertTrue(emailService.sendEmailIgnoreException(validAddress,validAddress,validAddress,"subject","body"));
 		}catch (Exception e){
+			fail();
+		}
+
+	}
+	@Test(expected = MailingException.class)
+	public void sendWithException() throws MailingException {
+			 emailService.sendEmail(null,validAddress,"subject","body");
+	}
+
+	@Test(expected = MailingException.class)
+	public void sendWithExceptionBcc() throws MailingException {
+		emailService.sendEmail(null, validAddress, validAddress,"subject","body");
+	}
+	@Test
+	public void sentVaildwithExeption(){
+		try {
+			emailService.sendEmail(validAddress,validAddress,"subject", "body");
+			emailService.sendEmail(validAddress,validAddress,validAddress,"subject","bodey");
+		} catch (MailingException mx){
 			fail();
 		}
 
