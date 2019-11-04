@@ -24,8 +24,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.wahlzeit.services.EmailAddress;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class EmailServiceTest {
 
@@ -56,5 +55,27 @@ public class EmailServiceTest {
 		} catch (Exception ex) {
 			Assert.fail("Silent mode does not allow exceptions");
 		}
+	}
+
+	@Test
+	public void testSendInValidBcc(){
+		try {
+			assertFalse(emailService.sendEmailIgnoreException(validAddress,null,validAddress,"subject","hi"));
+			assertFalse(emailService.sendEmailIgnoreException(null,validAddress,validAddress,null,"body"));
+			assertFalse(emailService.sendEmailIgnoreException(validAddress,validAddress,validAddress,"subject",null));
+
+		}catch (Exception ex) {
+			fail();
+		}
+	}
+
+	@Test
+	public void testSendValidBcc(){
+		try {
+			assertTrue(emailService.sendEmailIgnoreException(validAddress,validAddress,validAddress,"subject","body"));
+		}catch (Exception e){
+			fail();
+		}
+
 	}
 }
