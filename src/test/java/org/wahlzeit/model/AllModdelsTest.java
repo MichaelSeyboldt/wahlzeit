@@ -15,7 +15,8 @@ import org.wahlzeit.model.persistence.AllPersistenceTest;
         PhotoFilterTest.class,
         TagsTest.class,
         UserStatusTest.class,
-        ValueTest.class
+        ValueTest.class,
+        FliegerTest.class
 })
 public class AllModdelsTest {
 }

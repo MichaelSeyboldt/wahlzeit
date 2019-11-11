@@ -10,6 +10,15 @@ public class Flieger {
     protected String fType;
     protected float  wingspan;
 
+    public Flieger(){
+
+    }
+    public Flieger(String kenzeichen, String manufacturer ,String fType){
+        this.kenzeichen = kenzeichen;
+        this.manufacturer = manufacturer;
+        this.fType = fType;
+    }
+
     public void setKenzeichen(String kenzeichen) {
         this.kenzeichen = kenzeichen;
     }
