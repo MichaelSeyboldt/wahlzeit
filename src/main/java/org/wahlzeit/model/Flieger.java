@@ -7,6 +7,8 @@ public class Flieger {
     protected String kenzeichen;
     protected String wetbewerbskenzeichen;
     protected String manufacturer;
+    protected String fType;
+    protected float  wingspan;
 
     public void setKenzeichen(String kenzeichen) {
         this.kenzeichen = kenzeichen;
@@ -16,13 +18,7 @@ public class Flieger {
         return kenzeichen;
     }
 
-    public void setWetbewerbskeinzeichen(String wetbewerbskeinzeichen) {
-        this.wetbewerbskenzeichen = wetbewerbskeinzeichen;
-    }
 
-    public String getWetbewerbskeinzeichen() {
-        return wetbewerbskenzeichen;
-    }
 
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
@@ -36,12 +32,38 @@ public class Flieger {
         return (manufacturer.toUpperCase().equals(flieger.manufacturer.toUpperCase()));
 
     }
+
+    public String getWetbewerbskenzeichen() {
+        return wetbewerbskenzeichen;
+    }
+
+    public void setWetbewerbskenzeichen(String wetbewerbskenzeichen) {
+        this.wetbewerbskenzeichen = wetbewerbskenzeichen;
+    }
+
+    public String getfType() {
+        return fType;
+    }
+
+    public void setfType(String fType) {
+        this.fType = fType;
+    }
+
+    public float getWingspan() {
+        return wingspan;
+    }
+
+    public void setWingspan(float wingspan) {
+        this.wingspan = wingspan;
+    }
+
     public boolean hasSameKenzeichen(Flieger flieger){
         return (kenzeichen.toUpperCase().equals(flieger.kenzeichen.toUpperCase()));
     }
     public  boolean hasSameWetbewerbskenzeichen(Flieger flieger){
         return (wetbewerbskenzeichen.toUpperCase().equals(flieger.wetbewerbskenzeichen.toUpperCase()));
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -50,11 +72,13 @@ public class Flieger {
         Flieger flieger = (Flieger) o;
         return Objects.equals(kenzeichen, flieger.kenzeichen) &&
                 Objects.equals(wetbewerbskenzeichen, flieger.wetbewerbskenzeichen) &&
-                Objects.equals(manufacturer, flieger.manufacturer);
+                Objects.equals(manufacturer, flieger.manufacturer) &&
+                Objects.equals(fType,flieger.fType) &&
+                Float.compare(wingspan,flieger.wingspan) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(kenzeichen, wetbewerbskenzeichen, manufacturer);
+        return Objects.hash(kenzeichen, wetbewerbskenzeichen, manufacturer, fType);
     }
 }

@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 public class FliegerPhotoFactory extends PhotoFactory {
     private static final Logger log = Logger.getLogger(FliegerPhotoFactory.class.getName());
 
-    private static FliegerPhotoFactory instance = null;
 
     protected FliegerPhotoFactory(){}
 
@@ -24,7 +23,7 @@ public class FliegerPhotoFactory extends PhotoFactory {
     public static synchronized PhotoFactory getInstance() {
         if (instance == null) {
             log.config(LogBuilder.createSystemMessage().addAction("setting FliegerPhotoFactory").toString());
-            setInstance(new PhotoFactory());
+            setInstance(new FliegerPhotoFactory());
         }
 
         return instance;

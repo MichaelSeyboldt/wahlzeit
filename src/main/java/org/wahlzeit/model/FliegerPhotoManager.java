@@ -9,7 +9,6 @@ public class FliegerPhotoManager extends PhotoManager {
     private static final Logger log = Logger.getLogger(FliegerPhotoManager.class.getName());
 
     public FliegerPhotoManager() {
-
        photoTagCollector =  FliegerPhotoFactory.getInstance().createPhotoTagCollector();
     }
 
