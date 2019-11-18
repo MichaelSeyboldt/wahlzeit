@@ -1,28 +1,22 @@
 package org.wahlzeit.model;
 
+
 import java.util.Objects;
 
 public class Location {
-    protected Coordinate coordinate;
+    protected ICoordinate coordinate;
 
-    public Location(Coordinate position){
+    public Location(ICoordinate position){
         coordinate = position;
     }
 
-
-    /***
-     *
-     * @param target location
-     * @return double: direct distance or Double.NaN if the one of the locations never was set
-     */
-
-    public double getDistance(Location target) {
-        return coordinate.getDistance(target.coordinate);
-
+    public ICoordinate getCoordinate(){
+        return coordinate;
     }
 
+
     private boolean isEqual(Location target){
-        return coordinate != null && target.coordinate != null && coordinate.isEqual(target.coordinate);
+        return coordinate != null && target.coordinate != null && coordinate.equals(target.coordinate);
     }
 
     /***
