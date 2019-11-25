@@ -4,9 +4,9 @@ package org.wahlzeit.model;
 import java.util.Objects;
 
 public class Location {
-    protected ICoordinate coordinate;
+    protected AbstractCoordinate coordinate;
 
-    public Location(ICoordinate position){
+    public Location(AbstractCoordinate position){
         coordinate = position;
     }
 

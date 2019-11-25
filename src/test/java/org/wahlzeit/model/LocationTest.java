@@ -1,5 +1,6 @@
 package org.wahlzeit.model;
 
+import com.google.appengine.repackaged.com.google.gson.internal.$Gson$Preconditions;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,8 +8,8 @@ import static org.junit.Assert.*;
 
 
 public class LocationTest {
-    private ICoordinate zero, tenx, teny, tenz;
-    private ICoordinate sph0, sph1, sph2;
+    private CartesianCoordinate zero, tenx, teny, tenz;
+    private SphericCoordinate sph0, sph1, sph2;
 
     @Before
     public void setup(){
@@ -65,5 +66,13 @@ public class LocationTest {
 
     }
 
+    @Test
+    public void  testEqalityConversion(){
+        assertEquals(sph0,sph0.asCartesianCoordinate().asSphericCoordinate());
+        assertTrue(sph0.equals(sph0.asCartesianCoordinate()));
+        assertEquals(zero, zero.asSphericCoordinate().asCartesianCoordinate());
+        assertTrue(zero.equals(zero.asSphericCoordinate()));
+
+    }
 
 }

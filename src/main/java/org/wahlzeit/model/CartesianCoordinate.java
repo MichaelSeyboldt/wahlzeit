@@ -3,9 +3,9 @@ package org.wahlzeit.model;
 
 import java.util.Objects;
 
-public class CartesianCoordinate implements ICoordinate {
+public class CartesianCoordinate extends AbstractCoordinate {
 
-    private double x ,y ,z;
+    protected double x ,y ,z;
 
 
 
@@ -39,34 +39,20 @@ public class CartesianCoordinate implements ICoordinate {
     }
     protected SphericCoordinate convertToSpheric(){
         double radius = Math.sqrt((x*x)+(y*y)+(z*z));
-        double phi    = Math.atan(y/x);
-        double theta  = Math.acos(z/radius);
+        double phi    = Math.atan2(y,x);
+        double theta  = (radius!=0) ? Math.acos(z/radius): 0;
         SphericCoordinate coordinate = new SphericCoordinate(radius,phi,theta);
         return coordinate;
     }
 
-    @Override
-    public double getCartesianDistance(ICoordinate coordinate) {
-        return getDistance(coordinate.asCartesianCoordinate());
-    }
 
-    @Override
-    public double getCentralAngle(ICoordinate coordinate) {
-        return convertToSpheric().getCentralAngle(coordinate);
-    }
 
-    @Override
-    public double getGreatCircleDistance(ICoordinate coordinate) {
-        return convertToSpheric().getGreatCircleDistance(coordinate);
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null ) return false;
         CartesianCoordinate that ;
         if( getClass() != o.getClass()){
-            if(o.getClass()==ICoordinate.class){
+            if(o instanceof ICoordinate){
                 ICoordinate a = (ICoordinate) o;
                 that = a.asCartesianCoordinate();
             }else {

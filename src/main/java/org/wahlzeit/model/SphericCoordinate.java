@@ -3,9 +3,9 @@ package org.wahlzeit.model;
 import javax.swing.text.MutableAttributeSet;
 import java.util.Objects;
 
-public class SphericCoordinate implements ICoordinate {
+public class SphericCoordinate extends AbstractCoordinate {
 
-    private double radius, phi, theta;
+    protected double radius, phi, theta;
 
     SphericCoordinate(double radius, double phi, double theta){
         this.radius=radius;
@@ -14,16 +14,6 @@ public class SphericCoordinate implements ICoordinate {
 
     }
 
-    protected double getDistance(SphericCoordinate coordinate){
-        double ctrlAngle = doGetAngle(coordinate);
-        double umpfangProGrad = ((radius+coordinate.radius) * Math.PI)/360;
-        return ctrlAngle * umpfangProGrad;
-    }
-
-    @Override
-    public double getGreatCircleDistance(ICoordinate coordinate) {
-        return 0;
-    }
 
     @Override
     public CartesianCoordinate asCartesianCoordinate() {
@@ -42,19 +32,8 @@ public class SphericCoordinate implements ICoordinate {
         return this;
     }
 
-    @Override
-    public double getCartesianDistance(ICoordinate coordinate) {
-        return convertToCartesian().getCartesianDistance(coordinate);
-    }
 
-    protected double doGetAngle(SphericCoordinate coordinate){
-        return Math.acos(Math.sin(theta) * Math.sin(coordinate.theta) + (Math.cos(theta) * Math.cos(coordinate.theta) * Math.cos(coordinate.phi-phi)));
-    }
 
-    @Override
-    public double getCentralAngle(ICoordinate coordinate) {
-        return doGetAngle(coordinate.asSphericCoordinate());
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -62,7 +41,7 @@ public class SphericCoordinate implements ICoordinate {
         if (o == null ) return false;
         SphericCoordinate that;
         if(getClass() != o.getClass()){
-            if(o.getClass()==ICoordinate.class ){
+            if(o instanceof ICoordinate){
                 ICoordinate a = (ICoordinate) o;
                 that =a.asSphericCoordinate();
             } else {

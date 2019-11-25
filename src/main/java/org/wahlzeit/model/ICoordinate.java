@@ -10,8 +10,6 @@ public interface ICoordinate {
 
     public double getCentralAngle(ICoordinate coordinate);
 
-    public double getGreatCircleDistance(ICoordinate coordinate);
-
     public boolean equals(Object coordinate);
 
     public int hashCode();
