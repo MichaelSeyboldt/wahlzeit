@@ -32,9 +32,9 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     SphericCoordinate(double radius, double phi, double theta){
-        assertUsable(radius,"radius");
-        assertUsable(phi,"phi");
-        assertUsable(theta, "theta");
+        assertUsableArg(radius,"radius");
+        assertUsableArg(phi,"phi");
+        assertUsableArg(theta, "theta");
         if(checkLesZero(radius)) throw new IllegalArgumentException("radius has to be positive");
         if(checkLesZero(phi)) throw new IllegalArgumentException("phi has to be positive");
         if(checkLesZero(theta)) throw new IllegalArgumentException("theta has to be positive");
