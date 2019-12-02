@@ -10,16 +10,15 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
 
     CartesianCoordinate(double x, double y  , double z ){
+        //precon
+        assertUsableArg(x, "x");
+        assertUsableArg(y, "y");
+        assertUsableArg(z, "z");
         this.x=x;
         this.y=y;
         this.z=z;
-    }
-    protected double getDistance(CartesianCoordinate target){
-        double dx = x - target.x;
-        double dy = y - target.y;
-        double dz = z - target.z;
+        //invariant/postcon would be duplicateed
 
-        return Math.sqrt(dx*dx + dy*dy + dz*dz);
     }
     protected boolean isEqual(CartesianCoordinate target){
         return  Double.compare(target.x, x) == 0 &&
@@ -27,16 +26,31 @@ public class CartesianCoordinate extends AbstractCoordinate {
                 Double.compare(target.z, z) == 0;
     }
 
+    @Override
+    protected void assertInvariant() {
+        assertUsable(x, "x");
+        assertUsable(y, "y");
+        assertUsable(z, "z");
+    }
 
     @Override
     public CartesianCoordinate asCartesianCoordinate() {
+        assertInvariant();
         return this;
     }
 
     @Override
     public SphericCoordinate asSphericCoordinate() {
-        return convertToSpheric();
+        //precon / invariant
+        assertInvariant();
+        SphericCoordinate res= convertToSpheric();
+
+        //postcon
+        res.assertInvariant();
+        return res;
     }
+
+
     protected SphericCoordinate convertToSpheric(){
         double radius = Math.sqrt((x*x)+(y*y)+(z*z));
         double phi    = Math.atan2(y,x);
@@ -48,6 +62,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
 
     public boolean equals(Object o) {
+        //precon
         if (this == o) return true;
         if (o == null ) return false;
         CartesianCoordinate that ;
@@ -62,6 +77,9 @@ public class CartesianCoordinate extends AbstractCoordinate {
         } else {
             that = (CartesianCoordinate) o;
         }
+        //invariant
+        this.assertInvariant();
+        that.assertInvariant();
 
         return isEqual(that);
     }
