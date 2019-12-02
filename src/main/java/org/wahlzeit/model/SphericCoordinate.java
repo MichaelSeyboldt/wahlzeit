@@ -21,14 +21,20 @@ public class SphericCoordinate extends AbstractCoordinate {
 
     @Override
     protected void assertInvariant() {
-    if(checkLesZero(radius)) throw new IllegalStateException("radius has to be positive");
-    if(checkLesZero(phi)) throw new IllegalStateException("phi has to be positive");
-    if(checkLesZero(theta)) throw new IllegalStateException("theta has to be positive");
-    if(checkGt180(phi)) throw  new IllegalStateException("phi has to be less or equal 180");
-    if(checkGt360(theta)) throw new IllegalStateException("theta has to be less or equal 360");
+        assertUsable(radius,"radius");
+        assertUsable(phi,"phi");
+        assertUsable(theta, "theta");
+        if(checkLesZero(radius)) throw new IllegalStateException("radius has to be positive");
+        if(checkLesZero(phi)) throw new IllegalStateException("phi has to be positive");
+        if(checkLesZero(theta)) throw new IllegalStateException("theta has to be positive");
+        if(checkGt180(phi)) throw  new IllegalStateException("phi has to be less or equal 180");
+        if(checkGt360(theta)) throw new IllegalStateException("theta has to be less or equal 360");
     }
 
     SphericCoordinate(double radius, double phi, double theta){
+        assertUsable(radius,"radius");
+        assertUsable(phi,"phi");
+        assertUsable(theta, "theta");
         if(checkLesZero(radius)) throw new IllegalArgumentException("radius has to be positive");
         if(checkLesZero(phi)) throw new IllegalArgumentException("phi has to be positive");
         if(checkLesZero(theta)) throw new IllegalArgumentException("theta has to be positive");
