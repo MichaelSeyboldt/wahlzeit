@@ -90,6 +90,5 @@ public class LocationTest {
         CartesianCoordinate inAGalaxy = new CartesianCoordinate(Double.MAX_VALUE,0,0);
         CartesianCoordinate faaarFaaarAwaaay = new CartesianCoordinate(0,0,Double.MAX_VALUE);
         inAGalaxy.getCartesianDistance(faaarFaaarAwaaay);
-
     }
 }
