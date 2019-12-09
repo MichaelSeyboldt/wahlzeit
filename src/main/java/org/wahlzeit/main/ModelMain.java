@@ -59,10 +59,22 @@ public abstract class ModelMain extends AbstractMain {
 		UserManager.getInstance().init();
 
 		log.config(LogBuilder.createSystemMessage().addAction("init FliegerPhotoFactory").toString());
-		FliegerPhotoFactory.initialize();
+		try {
+			FliegerPhotoFactory.initialize();
+		} catch ( Exception e){
+			log.warning("failed to init FiegerPhotoFactory: " + e.toString());
+			//escalate
+			throw new InstantiationException("FliegerPhotoFactory could not bin initalized");
+		}
 
 		log.config(LogBuilder.createSystemMessage().addAction("load FliegerPhotos").toString());
-		FliegerPhotoManager.getInstance().init();
+		try {
+			FliegerPhotoManager.getInstance().init();
+		} catch (Exception e){
+			log.warning ("Failed to load FliegerPhotos: " + e.toString());
+			//escalate
+			throw new InstantiationException("FliegerPhotos could not be loaded");
+		}
 	}
 
 

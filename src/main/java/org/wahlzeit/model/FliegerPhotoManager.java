@@ -27,7 +27,7 @@ public class FliegerPhotoManager extends PhotoManager {
     @Override
     public Photo getPhotoFromId(PhotoId id){
         if (id == null) {
-            return null;
+            throw new IllegalArgumentException("Id may not be null");
         }
 
         Photo result = doGetPhotoFromId(id);
@@ -36,6 +36,9 @@ public class FliegerPhotoManager extends PhotoManager {
             result = FliegerPhotoFactory.getInstance().loadPhoto(id);
             if (result != null) {
                 doAddPhoto(result);
+            } else {
+                log.info("cloould not load photo id:" +id.stringValue);
+                //null seems to be the corrected value
             }
         }
 

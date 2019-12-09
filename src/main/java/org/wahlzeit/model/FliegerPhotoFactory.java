@@ -44,14 +44,31 @@ public class FliegerPhotoFactory extends PhotoFactory {
      * @methodtype factory
      */
     public FliegerPhoto createPhoto() {
-        return new FliegerPhoto();
+        FliegerPhoto photo = null;
+        try {
+            photo =new FliegerPhoto();
+        } catch (Exception e) {
+            log.warning("Could not genertate Photo: "+ e.toString());
+            //escalate
+            throw new IllegalStateException("Photo could not be generated. In: " + this.getClass());
+        }
+        return photo;
     }
 
     /**
      * Creates a new photo with the specified id
      */
     public FliegerPhoto createPhoto(PhotoId id) {
-        return new FliegerPhoto(id);
+        FliegerPhoto photo;
+        try {
+            photo = new FliegerPhoto(id);
+        } catch (Exception e) {
+            log.warning("Could not genertate Photo: "+ e.toString());
+            //escalate
+            throw new IllegalStateException("Photo could not be generated. In: " + this.getClass());
+        }
+
+        return photo;
     }
 
 }

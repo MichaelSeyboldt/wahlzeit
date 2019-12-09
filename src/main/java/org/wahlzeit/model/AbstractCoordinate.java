@@ -47,7 +47,7 @@ public abstract class AbstractCoordinate implements ICoordinate {
         return Math.sqrt(dx*dx + dy*dy + dz*dz);
     }
     @Override
-    public double getCentralAngle(ICoordinate coordinate){
+    public double getCentralAngle(ICoordinate coordinate) throws IllegalStateException, IllegalArgumentException{
         //precon
         testNotNull(coordinate);
 
@@ -62,7 +62,7 @@ public abstract class AbstractCoordinate implements ICoordinate {
     }
 
     @Override
-    public double getCartesianDistance(ICoordinate coordinate){
+    public double getCartesianDistance(ICoordinate coordinate) throws  IllegalArgumentException, IllegalStateException{
         //precon
         testNotNull(coordinate);
         //invariant

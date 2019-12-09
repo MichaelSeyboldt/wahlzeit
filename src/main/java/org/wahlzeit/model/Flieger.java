@@ -1,8 +1,10 @@
 package org.wahlzeit.model;
 
 import java.util.Objects;
+import java.util.logging.Logger;
 
 public class Flieger {
+    private static final Logger log = Logger.getLogger(Flieger.class.getName());
 
     protected String kenzeichen;
     protected String wetbewerbskenzeichen;
@@ -38,6 +40,10 @@ public class Flieger {
     }
 
     public boolean hasSameManufacturer(Flieger flieger){
+        if(flieger==null || flieger.manufacturer==null|| this.manufacturer==null ){
+            log.info("tryed to compare null values in \'hasSameManufacturer\'");
+            return false;
+        }
         return (manufacturer.toUpperCase().equals(flieger.manufacturer.toUpperCase()));
 
     }
@@ -67,9 +73,20 @@ public class Flieger {
     }
 
     public boolean hasSameKenzeichen(Flieger flieger){
+        if(flieger==null || flieger.kenzeichen ==null||kenzeichen ==null){
+            //fail
+            log.info("tryed to compare null value in hasSameKenzeichen");
+            //correct
+            return false;
+        }
         return (kenzeichen.toUpperCase().equals(flieger.kenzeichen.toUpperCase()));
     }
     public  boolean hasSameWetbewerbskenzeichen(Flieger flieger){
+        if(flieger==null||flieger.wetbewerbskenzeichen==null||wetbewerbskenzeichen==null){
+            //fail
+            log.info("tryed to compare null value in hasSameWettbewerbskennzeichen");
+            return false;
+        }
         return (wetbewerbskenzeichen.toUpperCase().equals(flieger.wetbewerbskenzeichen.toUpperCase()));
     }
 

@@ -9,7 +9,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
 
 
-    CartesianCoordinate(double x, double y  , double z ){
+    CartesianCoordinate(double x, double y  , double z )throws IllegalArgumentException{
         //precon
         assertUsableArg(x, "x");
         assertUsableArg(y, "y");
@@ -34,13 +34,13 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
     @Override
-    public CartesianCoordinate asCartesianCoordinate() {
+    public CartesianCoordinate asCartesianCoordinate() throws IllegalStateException{
         assertInvariant();
         return this;
     }
 
     @Override
-    public SphericCoordinate asSphericCoordinate() {
+    public SphericCoordinate asSphericCoordinate() throws  IllegalStateException{
         //precon / invariant
         assertInvariant();
         SphericCoordinate res= convertToSpheric();
@@ -51,7 +51,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
 
-    protected SphericCoordinate convertToSpheric(){
+    protected SphericCoordinate convertToSpheric() throws IllegalStateException{
         double radius = Math.sqrt((x*x)+(y*y)+(z*z));
         double phi    = Math.atan2(y,x);
         double theta  = (radius!=0) ? Math.acos(z/radius): 0;

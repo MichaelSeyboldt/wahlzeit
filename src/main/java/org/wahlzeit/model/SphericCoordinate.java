@@ -1,6 +1,5 @@
 package org.wahlzeit.model;
 
-import javax.swing.text.MutableAttributeSet;
 import java.util.Objects;
 
 public class SphericCoordinate extends AbstractCoordinate {
@@ -31,7 +30,7 @@ public class SphericCoordinate extends AbstractCoordinate {
         if(checkGt360(theta)) throw new IllegalStateException("theta has to be less or equal 360");
     }
 
-    SphericCoordinate(double radius, double phi, double theta){
+    SphericCoordinate(double radius, double phi, double theta) throws IllegalArgumentException{
         assertUsableArg(radius,"radius");
         assertUsableArg(phi,"phi");
         assertUsableArg(theta, "theta");
@@ -49,7 +48,7 @@ public class SphericCoordinate extends AbstractCoordinate {
 
 
     @Override
-    public CartesianCoordinate asCartesianCoordinate() {
+    public CartesianCoordinate asCartesianCoordinate() throws IllegalStateException {
         //precon
         assertInvariant();
         CartesianCoordinate res =  convertToCartesian();
@@ -65,7 +64,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     @Override
-    public SphericCoordinate asSphericCoordinate() {
+    public SphericCoordinate asSphericCoordinate() throws IllegalStateException{
         assertInvariant();
         return this;
     }
