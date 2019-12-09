@@ -20,12 +20,12 @@ public class FliegerPhotoManager extends PhotoManager {
 
 
     @Override
-    public Photo getPhoto(PhotoId id) {
+    public Photo getPhoto(PhotoId id) throws IllegalArgumentException {
         return instance.getPhotoFromId(id);
     }
 
     @Override
-    public Photo getPhotoFromId(PhotoId id){
+    public Photo getPhotoFromId(PhotoId id) throws IllegalArgumentException {
         if (id == null) {
             throw new IllegalArgumentException("Id may not be null");
         }

@@ -43,7 +43,7 @@ public class FliegerPhotoFactory extends PhotoFactory {
     /**
      * @methodtype factory
      */
-    public FliegerPhoto createPhoto() {
+    public FliegerPhoto createPhoto() throws IllegalStateException {
         FliegerPhoto photo = null;
         try {
             photo =new FliegerPhoto();
@@ -58,7 +58,7 @@ public class FliegerPhotoFactory extends PhotoFactory {
     /**
      * Creates a new photo with the specified id
      */
-    public FliegerPhoto createPhoto(PhotoId id) {
+    public FliegerPhoto createPhoto(PhotoId id) throws IllegalStateExceptiongit ad {
         FliegerPhoto photo;
         try {
             photo = new FliegerPhoto(id);
