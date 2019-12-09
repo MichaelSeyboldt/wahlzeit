@@ -58,7 +58,7 @@ public class FliegerPhotoFactory extends PhotoFactory {
     /**
      * Creates a new photo with the specified id
      */
-    public FliegerPhoto createPhoto(PhotoId id) throws IllegalStateExceptiongit ad {
+    public FliegerPhoto createPhoto(PhotoId id) throws IllegalStateException {
         FliegerPhoto photo;
         try {
             photo = new FliegerPhoto(id);
