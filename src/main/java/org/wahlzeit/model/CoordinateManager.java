@@ -1,13 +1,13 @@
 package org.wahlzeit.model;
 
-import jdk.nashorn.internal.ir.CatchNode;
+
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
-import java.util.Objects;
+
 
 public class CoordinateManager {
 
