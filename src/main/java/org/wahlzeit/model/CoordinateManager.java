@@ -80,14 +80,14 @@ public class CoordinateManager {
     public SphericCoordinate getSphericCoordinate(CartesianCoordinate coordinate) throws  IllegalStateException {
         if(!isValid(coordinate)){
             //error not included
-            throw  new IllegalStateException("this coordinate is invalid because it was nverer registered");
+            throw  new IllegalStateException("this coordinate is invalid because it was never registered");
         }
         return sphericCoordinates.get(getName(coordinate));
     }
 
     public CartesianCoordinate getCartesianCoordinate(SphericCoordinate coordinate) throws IllegalStateException{
         if(!isValid(coordinate)){
-            throw new IllegalStateException("this coordinate is invalid because it was nverer registered");
+            throw new IllegalStateException("this coordinate is invalid because it was never registered");
         }
         return cartesianCoordinates.get(getName(coordinate));
     }
