@@ -57,10 +57,7 @@ public class SphericCoordinate extends AbstractCoordinate {
         return res;
     }
     protected CartesianCoordinate convertToCartesian(){
-        double x = radius * Math.sin(theta) * Math.cos(phi);
-        double y = radius * Math.sin(theta) * Math.sin(phi);
-        double z = radius * Math.cos(theta);
-        return new CartesianCoordinate(x, y, z);
+        return CoordinateManager.getInstance().getCartesianCoordinate(this);
     }
 
     @Override
@@ -76,20 +73,17 @@ public class SphericCoordinate extends AbstractCoordinate {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null ) return false;
-        SphericCoordinate that;
         if(getClass() != o.getClass()){
-            if(o instanceof ICoordinate){
-                ICoordinate a = (ICoordinate) o;
-                that =a.asSphericCoordinate();
+            if(o instanceof AbstractCoordinate){
+                AbstractCoordinate a = (AbstractCoordinate) o;
+                CoordinateManager.getInstance().areEqual(this,a);
             } else {
                 return false;
             }
         } else {
-            that = (SphericCoordinate) o;
+
         }
-        this.assertInvariant();
-        that.assertInvariant();
-        return isEqual(that);
+        return false;
     }
     private boolean isEqual(SphericCoordinate coordinate){
         return Double.compare(coordinate.radius, radius) == 0 &&
@@ -99,6 +93,6 @@ public class SphericCoordinate extends AbstractCoordinate {
 
     @Override
     public int hashCode() {
-        return Objects.hash(radius, phi, theta);
+        return Objects.hash(CoordinateManager.getInstance().getName(this));
     }
 }

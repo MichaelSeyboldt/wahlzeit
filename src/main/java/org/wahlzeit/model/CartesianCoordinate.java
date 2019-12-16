@@ -52,11 +52,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
 
     protected SphericCoordinate convertToSpheric() throws IllegalStateException{
-        double radius = Math.sqrt((x*x)+(y*y)+(z*z));
-        double phi    = Math.atan2(y,x);
-        double theta  = (radius!=0) ? Math.acos(z/radius): 0;
-        SphericCoordinate coordinate = new SphericCoordinate(radius,phi,theta);
-        return coordinate;
+        return CoordinateManager.getInstance().getSphericCoordinate(this);
     }
 
 
@@ -65,27 +61,22 @@ public class CartesianCoordinate extends AbstractCoordinate {
         //precon
         if (this == o) return true;
         if (o == null ) return false;
-        CartesianCoordinate that ;
         if( getClass() != o.getClass()){
-            if(o instanceof ICoordinate){
-                ICoordinate a = (ICoordinate) o;
-                that = a.asCartesianCoordinate();
+            if(o instanceof AbstractCoordinate){
+                AbstractCoordinate a = (AbstractCoordinate) o;
+                return CoordinateManager.getInstance().areEqual(this,a);
             }else {
                 return false;
             }
 
         } else {
-            that = (CartesianCoordinate) o;
-        }
-        //invariant
-        this.assertInvariant();
-        that.assertInvariant();
 
-        return isEqual(that);
+        }
+        return false;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y, z);
+        return Objects.hash(CoordinateManager.getInstance().getName(this));
     }
 }

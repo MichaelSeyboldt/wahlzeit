@@ -12,15 +12,18 @@ public class LocationTest {
     private CartesianCoordinate zero, tenx, teny, tenz;
     private SphericCoordinate sph0, sph1, sph2;
 
+    private CoordinateManager manager;
+
     @Before
     public void setup() {
-        zero = new CartesianCoordinate(0, 0, 0);
-        tenx = new CartesianCoordinate(10, 0, 0);
-        teny = new CartesianCoordinate(0, 10, 0);
-        tenz = new CartesianCoordinate(0, 0, 10);
-        sph0 = new SphericCoordinate(1, 0, 0);
-        sph1 = new SphericCoordinate(1, Math.PI, 0);
-        sph2 = new SphericCoordinate(1, 0, 0);
+        manager = CoordinateManager.getInstance();
+        zero = manager.getCartesianCoordinate(0, 0, 0);
+        tenx =manager.getCartesianCoordinate(10, 0, 0);
+        teny =manager.getCartesianCoordinate(0, 10, 0);
+        tenz =manager.getCartesianCoordinate(0, 0, 10);
+        sph0 =manager.getSphericCoordinate(1, 0, 0);
+        sph1 =manager.getSphericCoordinate(1, Math.PI, 0);
+        sph2 =manager.getSphericCoordinate(1, 0, 0);
 
     }
 
@@ -44,7 +47,7 @@ public class LocationTest {
 
     @Test
     public void testequalityCartesian() {
-        CartesianCoordinate tx = new CartesianCoordinate(10, 0, 0);
+        CartesianCoordinate tx = manager.getCartesianCoordinate(10, 0, 0);
         assertTrue(zero.equals(zero));
         assertFalse(zero.equals(tenx));
         assertTrue(tenx.equals(tx));
@@ -66,14 +69,6 @@ public class LocationTest {
 
     }
 
-    @Test
-    public void testEqalityConversion() {
-        assertEquals(sph0, sph0.asCartesianCoordinate().asSphericCoordinate());
-        assertTrue(sph0.equals(sph0.asCartesianCoordinate()));
-        assertEquals(zero, zero.asSphericCoordinate().asCartesianCoordinate());
-        assertTrue(zero.equals(zero.asSphericCoordinate()));
-
-    }
 
     @Test(expected = IllegalArgumentException.class)
     public void testConstrCart() {
