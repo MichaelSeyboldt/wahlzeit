@@ -1,6 +1,7 @@
 package org.wahlzeit.model;
 
 
+import org.wahlzeit.annotations.DesignPattern;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.HashMap;
@@ -8,7 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
+@DesignPattern(
+        name = "Factory",
+        participants = {
+                "ConcreteFactory"
+        }
+)
 public class CoordinateManager {
 
     //singelton

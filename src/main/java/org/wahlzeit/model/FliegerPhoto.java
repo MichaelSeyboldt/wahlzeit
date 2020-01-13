@@ -1,8 +1,15 @@
 package org.wahlzeit.model;
 
 import com.googlecode.objectify.annotation.Subclass;
+import org.wahlzeit.annotations.DesignPattern;
 
 @Subclass
+@DesignPattern(
+        name="AbstractFactory",
+        participants = {
+                "ConcreteProduct"
+        }
+)
 public class FliegerPhoto  extends Photo{
     protected Flieger flieger;
 

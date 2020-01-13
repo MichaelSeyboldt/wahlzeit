@@ -1,7 +1,15 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.annotations.DesignPattern;
+
 import java.util.Objects;
 
+@DesignPattern(
+        name = "Factory Pattern",
+        participants = {
+                "ConcreteProduct"
+        }
+)
 public class SphericCoordinate extends AbstractCoordinate {
 
     protected final double EPSILON = 1e-15;

@@ -20,6 +20,7 @@
 
 package org.wahlzeit.servlets;
 
+import org.wahlzeit.annotations.DesignPattern;
 import org.wahlzeit.main.ServiceMain;
 import org.wahlzeit.model.UserSession;
 import org.wahlzeit.services.LogBuilder;
@@ -43,6 +44,12 @@ import java.util.logging.Logger;
 /**
  * A servlet class.
  */
+@DesignPattern(
+		name = "Null Object Pattern",
+		participants = {
+				"AbstractObject"
+		}
+)
 public abstract class AbstractServlet extends HttpServlet {
 
 	private static final Logger log = Logger.getLogger(AbstractServlet.class.getName());

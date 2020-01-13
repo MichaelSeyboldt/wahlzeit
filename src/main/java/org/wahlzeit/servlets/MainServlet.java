@@ -27,6 +27,7 @@ import com.google.common.io.CharStreams;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.wahlzeit.annotations.DesignPattern;
 import org.wahlzeit.handlers.PartUtil;
 import org.wahlzeit.handlers.WebFormHandler;
 import org.wahlzeit.handlers.WebPageHandler;
@@ -52,6 +53,12 @@ import java.util.logging.Logger;
 /**
  * The main servlet class for handling incoming and outgoing requests.
  */
+@DesignPattern(
+		name = "Null Object Pattern",
+		participants ={
+				"Concrete Object"
+		}
+)
 public class MainServlet extends AbstractServlet {
 
 	private static final Logger log = Logger.getLogger(MainServlet.class.getName());

@@ -1,6 +1,14 @@
 package org.wahlzeit.model;
 
 
+import org.wahlzeit.annotations.DesignPattern;
+
+@DesignPattern(
+        name = "Factory Pattern",
+        participants = {
+                "AbstractProduct"
+        }
+)
 public abstract class AbstractCoordinate implements ICoordinate {
 
     private void testNotNull(ICoordinate coordinate){

@@ -1,8 +1,16 @@
 package org.wahlzeit.model;
 
 
+import org.wahlzeit.annotations.DesignPattern;
+
 import java.util.Objects;
 
+@DesignPattern(
+        name = "Factory Pattern",
+        participants = {
+                "ConcreteProduct"
+        }
+)
 public class CartesianCoordinate extends AbstractCoordinate {
 
     protected double x ,y ,z;
