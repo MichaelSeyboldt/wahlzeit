@@ -8,8 +8,8 @@ import static org.junit.Assert.*;
 
 public class FliegerTest {
 
-    Flieger a , a2, b;
-    FliegerType segelflieger, pzl, shempp, pirat;
+    Flieger a , a2, b, d;
+    FliegerType segelflieger, pzl, shempp, pirat, duo;
 
     @Test
     public void testEquals(){
@@ -33,6 +33,11 @@ public class FliegerTest {
         assertTrue(a.hasSameManufacturer(b));
         assertTrue(a.hasSameManufacturer(a2));
     }
+    @Test
+    public void testDifferentManufacturer(){
+        assertFalse(a.hasSameManufacturer(d));
+
+    }
 
 
     @Before
@@ -48,13 +53,14 @@ public class FliegerTest {
                 segelflieger = next;
             } else if(next.getId().equals("PZL") ){
                 pzl = next;
-            } else if(next.getId().equals("Schempp-Hirt")){
+            } else if(next.getId().equals("Schempp-Hirth")){
                 shempp = next;
             } else if (next.getId().equals("SZD-30")){
                 pirat = next;
             }
         }
-
+        duo = new FliegerType(shempp,"Duo Discus", "Schempp-Hirth", "Duo Discus",20,false, 2 );
+        d = new Flieger("D-1234", duo);
         a  = new  Flieger("D-3620",pirat );
         a2 = new Flieger("D-3620",pirat);
         b  = new Flieger("D-1718",pirat);
