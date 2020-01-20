@@ -7,11 +7,11 @@ import java.util.*;
 
 
 public class FliegerManager
-       // extends ObjectManager
         {
 
-    protected FliegerType rootType;
+    protected final FliegerType rootType;
 
+    protected static FliegerManager instance;
 
     protected Set<FliegerType> typeSet;
 
@@ -33,13 +33,20 @@ public class FliegerManager
         }
     }
 
-    public FliegerManager(){
+    protected FliegerManager(){
         super();
         rootType = new FliegerType("Flieger", "Flieger");
 
         typeSet  = new HashSet<FliegerType>();
         typeSet.add(rootType);
 
+    }
+
+    public static synchronized FliegerManager getInstance(){
+        if(instance ==null){
+            instance = new FliegerManager();
+        }
+        return instance;
     }
 
 
@@ -93,5 +100,32 @@ public class FliegerManager
     public FliegerType getRootType() {
         return rootType;
     }
+
+    public Flieger newFlieger(String kenzeichen,FliegerType type) throws IllegalArgumentException {
+        assertNotNullArg(kenzeichen, "kenzeichen");
+        assertNotNullArg(type, "type");
+
+        if(!typeSet.contains(type)){
+            if(typeSet.contains(type.getSuperType())){
+                doAddType(type.getSuperType(),type);
+            }else {
+                throw new IllegalArgumentException("invalid type");
+            }
+        }
+        return new Flieger(kenzeichen,type);
+    }
+
+    public Flieger newFlieger(String kenzeichen, List<String> typeIDs){
+        FliegerType newType =  rootType;
+
+        for(String typeid: typeIDs){
+            if((newType = newType.getSubType(typeid)) == null ){
+                throw new IllegalArgumentException("invalid type id"+ typeid);
+            }
+        }
+
+        return new Flieger( kenzeichen, newType);
+    }
+
 
 }

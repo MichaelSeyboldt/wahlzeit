@@ -136,6 +136,10 @@ public class FliegerType  {
         return subTypes;
     }
 
+    public FliegerType getSubType(String id){
+        return subTypes.get(id);
+    }
+
     public void addSubType(FliegerType newSubType) {
         subTypes.put(newSubType.getId(), newSubType);
     }

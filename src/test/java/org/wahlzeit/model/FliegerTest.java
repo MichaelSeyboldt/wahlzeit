@@ -42,7 +42,7 @@ public class FliegerTest {
 
     @Before
     public void initFlieger(){
-        FliegerManager manager = new FliegerManager();
+        FliegerManager manager =  FliegerManager.getInstance();
         manager.initDefault();
         Iterator<FliegerType> types = manager.getAllTypes();
 
@@ -60,9 +60,10 @@ public class FliegerTest {
             }
         }
         duo = new FliegerType(shempp,"Duo Discus", "Schempp-Hirth", "Duo Discus",20,false, 2 );
-        d = new Flieger("D-1234", duo);
-        a  = new  Flieger("D-3620",pirat );
-        a2 = new Flieger("D-3620",pirat);
-        b  = new Flieger("D-1718",pirat);
+        manager.addType(shempp,duo);
+        d = manager.newFlieger("D-1234", duo);
+        a  = manager.newFlieger("D-3620",pirat );
+        a2 = manager.newFlieger("D-3620",pirat);
+        b  = manager.newFlieger("D-1718",pirat);
     }
 }
