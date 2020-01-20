@@ -18,7 +18,7 @@ public class OfyService {
 	 */
 	static {
 		factory().register(Photo.class);
-		factory().register(FliegerPhoto.class);
+		//factory().register(FliegerPhoto.class);
 		factory().register(Globals.class);
 		factory().register(Tag.class);
 		factory().register(User.class);
@@ -28,6 +28,7 @@ public class OfyService {
 		factory().register(Guest.class);
 		factory().register(PhotoCase.class);
 		factory().register(ImageWrapper.class);
+
 	}
 
 	public static Objectify ofy() {

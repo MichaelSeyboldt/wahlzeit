@@ -1,13 +1,14 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.services.*;
 import java.util.HashMap;
 import java.util.*;
-import com.googlecode.objectify.annotation.*;
 
-@Entity
-public class FliegerType {
 
-    @Id
+
+public class FliegerType  {
+
+
     protected String id;
 
     protected String manufacturer;

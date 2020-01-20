@@ -7,12 +7,11 @@ import java.util.*;
 
 
 public class FliegerManager
-        //extends ObjectManager
+       // extends ObjectManager
         {
 
     protected FliegerType rootType;
 
-    protected static FliegerManager instance;
 
     protected Set<FliegerType> typeSet;
 
@@ -34,7 +33,7 @@ public class FliegerManager
         }
     }
 
-    protected FliegerManager(){
+    public FliegerManager(){
         super();
         rootType = new FliegerType("Flieger", "Flieger");
 
@@ -43,12 +42,6 @@ public class FliegerManager
 
     }
 
-    protected static synchronized FliegerManager getInstance(){
-        if(instance==null){
-            instance = new FliegerManager();
-        }
-        return instance;
-    }
 
     public Iterator<FliegerType> getAllTypes() {
         return typeSet.iterator();

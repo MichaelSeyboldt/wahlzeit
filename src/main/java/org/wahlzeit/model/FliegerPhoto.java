@@ -3,7 +3,7 @@ package org.wahlzeit.model;
 import com.googlecode.objectify.annotation.Subclass;
 import org.wahlzeit.annotations.DesignPattern;
 
-@Subclass
+
 @DesignPattern(
         name="AbstractFactory",
         participants = {

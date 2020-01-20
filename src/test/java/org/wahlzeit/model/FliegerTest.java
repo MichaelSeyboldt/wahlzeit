@@ -37,7 +37,7 @@ public class FliegerTest {
 
     @Before
     public void initFlieger(){
-        FliegerManager manager = FliegerManager.getInstance();
+        FliegerManager manager = new FliegerManager();
         manager.initDefault();
         Iterator<FliegerType> types = manager.getAllTypes();
 
