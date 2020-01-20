@@ -8,17 +8,16 @@ public class Flieger {
 
     protected String kenzeichen;
     protected String wetbewerbskenzeichen;
-    protected String manufacturer;
-    protected String fType;
-    protected float  wingspan;
+    protected FliegerType type;
 
-    public Flieger(){
+
+    public Flieger(FliegerType fliegerType){
+        this.type = fliegerType;
 
     }
-    public Flieger(String kenzeichen, String manufacturer ,String fType){
+    public Flieger(String kenzeichen, FliegerType fliegerType ){
         this.kenzeichen = kenzeichen;
-        this.manufacturer = manufacturer;
-        this.fType = fType;
+        this.type = fliegerType;
     }
 
     public void setKenzeichen(String kenzeichen) {
@@ -31,20 +30,19 @@ public class Flieger {
 
 
 
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
+
 
     public String getManufacturer() {
-        return manufacturer;
+        return type.getManufacturer();
+
     }
 
     public boolean hasSameManufacturer(Flieger flieger){
-        if(flieger==null || flieger.manufacturer==null|| this.manufacturer==null ){
+        if(flieger==null || flieger.getManufacturer()==null|| this.getManufacturer()==null ){
             log.info("tryed to compare null values in \'hasSameManufacturer\'");
             return false;
         }
-        return (manufacturer.toUpperCase().equals(flieger.manufacturer.toUpperCase()));
+        return (getManufacturer().toUpperCase().equals(flieger.getManufacturer().toUpperCase()));
 
     }
 
@@ -56,21 +54,15 @@ public class Flieger {
         this.wetbewerbskenzeichen = wetbewerbskenzeichen;
     }
 
-    public String getfType() {
-        return fType;
+    public FliegerType getType() {
+        return type;
     }
 
-    public void setfType(String fType) {
-        this.fType = fType;
-    }
 
     public float getWingspan() {
-        return wingspan;
+        return type.getWingspan();
     }
 
-    public void setWingspan(float wingspan) {
-        this.wingspan = wingspan;
-    }
 
     public boolean hasSameKenzeichen(Flieger flieger){
         if(flieger==null || flieger.kenzeichen ==null||kenzeichen ==null){
@@ -98,13 +90,11 @@ public class Flieger {
         Flieger flieger = (Flieger) o;
         return Objects.equals(kenzeichen, flieger.kenzeichen) &&
                 Objects.equals(wetbewerbskenzeichen, flieger.wetbewerbskenzeichen) &&
-                Objects.equals(manufacturer, flieger.manufacturer) &&
-                Objects.equals(fType,flieger.fType) &&
-                Float.compare(wingspan,flieger.wingspan) == 0;
+                Objects.equals(getType(),flieger.getType()) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(kenzeichen, wetbewerbskenzeichen, manufacturer, fType);
+        return Objects.hash(kenzeichen, wetbewerbskenzeichen, type);
     }
 }
